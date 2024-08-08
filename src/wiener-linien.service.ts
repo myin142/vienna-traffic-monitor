@@ -34,11 +34,12 @@ export interface Vehicle {
   barrierFree: boolean;
   trafficjam: boolean;
   realtimeSupported: boolean;
+  type: string;
 }
 
 export interface Departure {
   departureTime: DepartureTime;
-  vehicle: string;
+  vehicle: Vehicle;
 }
 
 export interface MonitorLine {
@@ -48,6 +49,7 @@ export interface MonitorLine {
   trafficjam: boolean;
   barrierFree: boolean;
   departures: { departure: Departure[] };
+  type: string;
 }
 
 export interface MonitorResponse {

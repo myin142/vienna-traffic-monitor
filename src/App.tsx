@@ -41,7 +41,7 @@ function App() {
   );
 
   const nearbyStops = useMemo(() => {
-    if (selectedGroup === "") return [];
+    if (selectedGroup === "" || !groups[selectedGroup].position) return [];
     return stopsService.getStopsNearby(
       stops,
       groups[selectedGroup].position,
@@ -56,13 +56,14 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setCurrentPosition(groups[selectedGroup].position);
+    setCurrentPosition(groups[selectedGroup]?.position ?? VIENNA_LAT_LONG);
   }, [selectedGroup]);
 
   useEffect(() => {
     setGroups({ ...groups, [selectedGroup]: { position: currentPosition } });
-    saveData();
   }, [currentPosition]);
+
+  useEffect(() => saveData(), [groups])
 
   useEffect(() => {
     loadMonitoring();

@@ -1,6 +1,5 @@
 export interface StopsGroup {
-  name: string;
-  stops: StopData[];
+  position: [number, number];
 }
 
 export interface StopData {
